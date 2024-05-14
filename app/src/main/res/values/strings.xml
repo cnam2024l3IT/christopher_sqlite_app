@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SQLiteExampleApp</string>
+    <string name="personLastNameCtrlTxt">Nom</string>
+    <string name="personFirstNameCtrlTxt">Prénom</string>
+    <string name="savePersonBtnTxt">Ajouter</string>
+    <string name="goToMainBtnTxt">Retour écran principal</string>
+    <string name="goToPersonFormBtnTxt">Nouvelle personne</string>
 </resources>

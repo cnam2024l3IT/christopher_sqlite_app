@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import com.example.sqliteexampleapp.databases.contracts.DataContract;
 import com.example.sqliteexampleapp.databases.helpers.DatabaseHelper;
 import com.example.sqliteexampleapp.models.Annonce;
-import com.example.sqliteexampleapp.models.Personne;
+import com.example.sqliteexampleapp.models.Person;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -67,10 +67,10 @@ public class DBManager {
         content.put(DataContract.AnnonceTable.DATE_FIN_PUBLICATION, annonce.getDateFinPublication());
         return insert(DataContract.AnnonceTable.TABLE_NAME, content);
     }
-    public long insertPersonne(Personne personne) {
+    public long insertPersonne(Person personne) {
         ContentValues content = new ContentValues();
-        content.put(DataContract.PersonneTable.NOM, personne.getNom());
-        content.put(DataContract.PersonneTable.PRENOM, personne.getPrenom());
+        content.put(DataContract.PersonneTable.NOM, personne.getLastName());
+        content.put(DataContract.PersonneTable.PRENOM, personne.getFirstName());
         return insert(DataContract.PersonneTable.TABLE_NAME, content);
     }
 
@@ -96,10 +96,10 @@ public class DBManager {
         content.put(DataContract.AnnonceTable.DATE_FIN_PUBLICATION, annonce.getDateFinPublication());
         return update(content, DataContract.AnnonceTable.TABLE_NAME, _id);
     }
-    public int updatePersonne(long _id, Personne personne) {
+    public int updatePersonne(long _id, Person personne) {
         ContentValues content = new ContentValues();
-        content.put(DataContract.PersonneTable.NOM, personne.getNom());
-        content.put(DataContract.PersonneTable.PRENOM, personne.getPrenom());
+        content.put(DataContract.PersonneTable.NOM, personne.getLastName());
+        content.put(DataContract.PersonneTable.PRENOM, personne.getFirstName());
         return update(content, DataContract.PersonneTable.TABLE_NAME, _id);
     }
 

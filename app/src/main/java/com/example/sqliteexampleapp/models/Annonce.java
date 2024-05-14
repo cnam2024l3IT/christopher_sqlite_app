@@ -1,10 +1,7 @@
 package com.example.sqliteexampleapp.models;
 
-import java.time.LocalDateTime;
-import java.util.Date;
-
 public class Annonce extends DataInfo {
-    private Personne personne;
+    private Person personne;
 
     private String title;
 
@@ -16,11 +13,9 @@ public class Annonce extends DataInfo {
 
     private String dateFinPublication;
 
-    public Annonce() {}
-
-    public Annonce(Personne personne, String title, int price, String description, String datePublication,
-       String dateFinPublication) {
-        this.personne = personne;
+    public Annonce(Person person, String title, int price, String description, String datePublication,
+                   String dateFinPublication) {
+        this.personne = person;
         this.title = title;
         this.price = price;
         this.description = description;
@@ -28,11 +23,11 @@ public class Annonce extends DataInfo {
         this.dateFinPublication = dateFinPublication;
     }
 
-    public Personne getPersonne() {
+    public Person getPersonne() {
         return personne;
     }
 
-    public void setPersonne(Personne personne) {
+    public void setPersonne(Person personne) {
         this.personne = personne;
     }
 
