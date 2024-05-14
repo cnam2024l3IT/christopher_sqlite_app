@@ -15,7 +15,7 @@ public class Annonce extends DataInfo {
 
     public Annonce(Person person, String title, int price, String description, String datePublication,
                    String dateFinPublication) {
-        this.personne = person; // test
+        this.personne = person;
         this.title = title;
         this.price = price;
         this.description = description;
