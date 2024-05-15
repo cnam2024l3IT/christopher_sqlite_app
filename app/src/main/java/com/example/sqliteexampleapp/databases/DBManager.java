@@ -15,7 +15,9 @@ import com.example.sqliteexampleapp.models.Annonce;
 import com.example.sqliteexampleapp.models.Person;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class DBManager {
@@ -45,6 +47,22 @@ public class DBManager {
             DataContract.PersonneTable.PRENOM, DataContract.PersonneTable.DATE_CREATION,
             DataContract.PersonneTable.DATE_MODIFICATION };
         return getCursor(DataContract.PersonneTable.TABLE_NAME, columns);
+    }
+
+    public ArrayList<Person> getPersonsList() {
+        ArrayList<Person> persons = new ArrayList<>();
+        try (Cursor cursor = fetchPersonnes()) {
+            if (cursor != null) {
+                while (!cursor.isAfterLast()) {
+                    Person person = new Person(cursor.getLong(0), cursor.getString(1),
+                            cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                    persons.add(person);
+                    cursor.moveToNext();
+                }
+                cursor.close();
+            }
+        }
+        return persons;
     }
 
     @Nullable

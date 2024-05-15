@@ -1,9 +1,6 @@
 package com.example.sqliteexampleapp;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +13,7 @@ import com.example.sqliteexampleapp.models.Person;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class PersonIndexActivity extends AppCompatActivity {
 
     private DBManager dbManager;
 
@@ -24,26 +21,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_person_index);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        Button goToPersonFormBtn = findViewById(R.id.goToPersonFormBtn);
-
         dbManager = new DBManager(this);
         dbManager.open();
 
         ArrayList<Person> persons = dbManager.getPersonsList();
 
-        for (Person person:persons) {
-            Log.d("person", "onCreate: " + person);
-        }
-
-        goToPersonFormBtn.setOnClickListener(v -> MainActivity.this.startActivity(new Intent(MainActivity.this.getApplicationContext(),
-                PersonFormActivity.class)));
+        // ajouter activity person view : afficher les infos de la personne
+        // afficher les vues dans la scroll view list
     }
 
     @Override
