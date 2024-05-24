@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">SQLiteExampleApp</string>
+    <string name="personLastNameCtrlTxt">Nom</string>
+    <string name="personFirstNameCtrlTxt">Prénom</string>
+    <string name="saveBtnTxt">Ajouter</string>
+    <string name="goToMainBtnTxt">Retour écran principal</string>
+    <string name="goToPersonIndexBtnTxt">Personnes</string>
+    <string name="goToAnnonceIndexBtnTxt">Annonces</string>
+    <string name="goToPersonFormBtnTxt">Nouvelle personne</string>
+    <string name="goToAnnonceFormBtnTxt">Nouvelle annonce</string>
+    <string name="annoncePersonCtrlTxt">Personne</string>
+    <string name="annonceTitleCtrlTxt">Titre</string>
+    <string name="annoncePriceCtrlTxt">Prix</string>
+    <string name="annonceDescriptionCtrlTxt">Description</string>
+    <string name="annonceDatePublicationCtrlTxt">Date de publication</string>
+    <string name="annonceDateFinPublicationCtrlTxt">Date de fin de publication</string>
 </resources>

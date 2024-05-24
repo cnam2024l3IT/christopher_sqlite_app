@@ -12,10 +12,12 @@ import androidx.annotation.Nullable;
 import com.example.sqliteexampleapp.databases.contracts.DataContract;
 import com.example.sqliteexampleapp.databases.helpers.DatabaseHelper;
 import com.example.sqliteexampleapp.models.Annonce;
-import com.example.sqliteexampleapp.models.Personne;
+import com.example.sqliteexampleapp.models.Person;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class DBManager {
@@ -47,6 +49,22 @@ public class DBManager {
         return getCursor(DataContract.PersonneTable.TABLE_NAME, columns);
     }
 
+    public ArrayList<Person> getPersonsList() {
+        ArrayList<Person> persons = new ArrayList<>();
+        try (Cursor cursor = fetchPersonnes()) {
+            if (cursor != null) {
+                while (!cursor.isAfterLast()) {
+                    Person person = new Person(cursor.getLong(0), cursor.getString(1),
+                            cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                    persons.add(person);
+                    cursor.moveToNext();
+                }
+                cursor.close();
+            }
+        }
+        return persons;
+    }
+
     @Nullable
     private Cursor getCursor(String tableName, String[] columns) {
         Cursor cursor = database.query(tableName, columns, null, null, null,
@@ -67,10 +85,10 @@ public class DBManager {
         content.put(DataContract.AnnonceTable.DATE_FIN_PUBLICATION, annonce.getDateFinPublication());
         return insert(DataContract.AnnonceTable.TABLE_NAME, content);
     }
-    public long insertPersonne(Personne personne) {
+    public long insertPersonne(Person personne) {
         ContentValues content = new ContentValues();
-        content.put(DataContract.PersonneTable.NOM, personne.getNom());
-        content.put(DataContract.PersonneTable.PRENOM, personne.getPrenom());
+        content.put(DataContract.PersonneTable.NOM, personne.getLastName());
+        content.put(DataContract.PersonneTable.PRENOM, personne.getFirstName());
         return insert(DataContract.PersonneTable.TABLE_NAME, content);
     }
 
@@ -96,10 +114,10 @@ public class DBManager {
         content.put(DataContract.AnnonceTable.DATE_FIN_PUBLICATION, annonce.getDateFinPublication());
         return update(content, DataContract.AnnonceTable.TABLE_NAME, _id);
     }
-    public int updatePersonne(long _id, Personne personne) {
+    public int updatePersonne(long _id, Person personne) {
         ContentValues content = new ContentValues();
-        content.put(DataContract.PersonneTable.NOM, personne.getNom());
-        content.put(DataContract.PersonneTable.PRENOM, personne.getPrenom());
+        content.put(DataContract.PersonneTable.NOM, personne.getLastName());
+        content.put(DataContract.PersonneTable.PRENOM, personne.getFirstName());
         return update(content, DataContract.PersonneTable.TABLE_NAME, _id);
     }
 
