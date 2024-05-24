@@ -1,5 +1,7 @@
 package com.example.sqliteexampleapp.models;
 
+import androidx.annotation.Nullable;
+
 public class Annonce extends DataInfo {
     private Person personne;
 

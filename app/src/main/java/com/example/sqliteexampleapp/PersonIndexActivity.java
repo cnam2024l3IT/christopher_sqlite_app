@@ -1,6 +1,10 @@
 package com.example.sqliteexampleapp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,15 +12,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.sqliteexampleapp.adapters.PersonListViewAdapter;
 import com.example.sqliteexampleapp.databases.DBManager;
-import com.example.sqliteexampleapp.models.Person;
-
-import java.util.ArrayList;
 
 public class PersonIndexActivity extends AppCompatActivity {
 
-    private DBManager dbManager;
+    ListView personsListView;
+    Button goToMainBtn, goToPersonFormBtn;
+    Context context;
 
+    private DBManager dbManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,13 +33,19 @@ public class PersonIndexActivity extends AppCompatActivity {
             return insets;
         });
 
-        dbManager = new DBManager(this);
+        context = this;
+        dbManager = new DBManager(context);
         dbManager.open();
+        personsListView = findViewById(R.id.personsListView);
+        goToMainBtn = findViewById(R.id.goToMainBtn1);
+        goToPersonFormBtn = findViewById(R.id.goToPersonFormBtn);
 
-        ArrayList<Person> persons = dbManager.getPersonsList();
+        PersonListViewAdapter adapter = new PersonListViewAdapter(context, dbManager.getPersonsList());
 
-        // ajouter activity person view : afficher les infos de la personne
-        // afficher les vues dans la scroll view list
+        personsListView.setAdapter(adapter);
+
+        goToMainBtn.setOnClickListener(v -> startActivity(new Intent(context, MainActivity.class)));
+        goToPersonFormBtn.setOnClickListener(v -> startActivity(new Intent(context, PersonFormActivity.class)));
     }
 
     @Override

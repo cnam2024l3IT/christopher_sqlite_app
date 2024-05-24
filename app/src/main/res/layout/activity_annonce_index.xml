@@ -5,28 +5,22 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".AnnonceIndexActivity">
 
     <Button
-        android:id="@+id/goToPersonIndexBtn1"
+        android:id="@+id/goToMainBtn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="248dp"
-        android:text="@string/goToPersonIndexBtnTxt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/goToMainBtnTxt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/goToAnnonceIndexBtn1"
+        android:id="@+id/goToAnnonceFormBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/goToAnnonceIndexBtnTxt"
+        android:text="@string/goToAnnonceFormBtnTxt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goToPersonIndexBtn1"
-        app:layout_constraintVertical_bias="0.082" />
+        app:layout_constraintStart_toEndOf="@+id/goToMainBtn2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

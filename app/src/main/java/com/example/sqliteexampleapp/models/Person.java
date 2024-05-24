@@ -20,6 +20,10 @@ public class Person extends DataInfo {
         this.dateModification = dateModification;
     }
 
+    public Person(long _id) {
+        this._id = _id;
+    }
+
     public String getLastName() {
         return lastName;
     }
