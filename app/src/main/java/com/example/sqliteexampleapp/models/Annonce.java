@@ -25,6 +25,11 @@ public class Annonce extends DataInfo {
         this.dateFinPublication = dateFinPublication;
     }
 
+    public Annonce(String title, int price) {
+        this.title = title;
+        this.price = price;
+    }
+
     public Person getPersonne() {
         return personne;
     }

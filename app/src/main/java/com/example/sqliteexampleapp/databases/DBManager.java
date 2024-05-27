@@ -42,6 +42,21 @@ public class DBManager {
             DataContract.AnnonceTable.DATE_CREATION, DataContract.AnnonceTable.DATE_MODIFICATION };
         return getCursor(DataContract.AnnonceTable.TABLE_NAME, columns);
     }
+
+    public ArrayList<Annonce> getAnnoncesList() {
+        ArrayList<Annonce> annonces = new ArrayList<>();
+        try (Cursor cursor = fetchAnnonces()) {
+            if (cursor != null) {
+                while (!cursor.isAfterLast()) {
+                    Annonce annonce = new Annonce(cursor.getString(2), cursor.getInt(3));
+                    annonces.add(annonce);
+                    cursor.moveToNext();
+                }
+            }
+        }
+        return annonces;
+    }
+
     public Cursor fetchPersonnes() {
         String[] columns = new String[] { DataContract.PersonneTable._ID, DataContract.PersonneTable.NOM,
             DataContract.PersonneTable.PRENOM, DataContract.PersonneTable.DATE_CREATION,
@@ -59,7 +74,6 @@ public class DBManager {
                     persons.add(person);
                     cursor.moveToNext();
                 }
-                cursor.close();
             }
         }
         return persons;
@@ -69,9 +83,7 @@ public class DBManager {
     private Cursor getCursor(String tableName, String[] columns) {
         Cursor cursor = database.query(tableName, columns, null, null, null,
                 null, null);
-        if (cursor != null) {
-            cursor.moveToFirst();
-        }
+        if (cursor != null) cursor.moveToFirst();
         return cursor;
     }
 
