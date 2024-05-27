@@ -20,8 +20,8 @@ public class PersonIndexActivity extends AppCompatActivity {
     ListView personsListView;
     Button goToMainBtn, goToPersonFormBtn;
     Context context;
-
     private DBManager dbManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +40,7 @@ public class PersonIndexActivity extends AppCompatActivity {
         goToMainBtn = findViewById(R.id.goToMainBtn1);
         goToPersonFormBtn = findViewById(R.id.goToPersonFormBtn);
 
-        PersonListViewAdapter adapter = new PersonListViewAdapter(context, dbManager.getPersonsList());
-
-        personsListView.setAdapter(adapter);
+        personsListView.setAdapter(new PersonListViewAdapter(context, dbManager.getPersonsList()));
 
         goToMainBtn.setOnClickListener(v -> startActivity(new Intent(context, MainActivity.class)));
         goToPersonFormBtn.setOnClickListener(v -> startActivity(new Intent(context, PersonFormActivity.class)));
